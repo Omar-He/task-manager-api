@@ -18,7 +18,7 @@ const authenticate = async (req, res) => {
     return res.status(401).json({ message: "Invalid email or password" });
   }
   //generate a token
-  const token = jwt.sign({ _id: user._id }, SECRET, { expiresIn: "1h" });
+  const token = jwt.sign({ _id: user._id }, SECRET, { expiresIn: "1h" }); //we can pass the username with the ID in the payload not only the _id
   res.json({ token });
 };
 
