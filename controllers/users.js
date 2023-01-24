@@ -70,14 +70,3 @@ module.exports = {
   updateUser,
   deleteUser,
 };
-
-// In this example, I've created a set of functions that handle different CRUD operations for the User model.
-// - `createUser` function that creates a new user and saves it to the database.
-// - `getAllUsers` function that retrieves all users from the database.
-// - `getUser` function that retrieves a specific user by ID from the database.
-// - `updateUser` function that updates an existing user in the database.
-// - `deleteUser` function that deletes a specific user from the database.
-
-// Each function handle the error that could happen during the operation and return appropriate status codes and message.
-
-// You will need to import these functions in your routes file and assign them to the corresponding endpoints.

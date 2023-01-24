@@ -3,12 +3,11 @@ const jwt = require("jsonwebtoken");
 const bcrypt = require("bcryptjs");
 require("dotenv").config();
 
-const SECRET = process.env.SECRET;
+const { SECRET } = process.env;
 
-//route to authenticate user and generate a token
 const authenticate = async (req, res) => {
   const { email, password } = req.body;
-  //check email and password against the database
+  // check email and password against the database
   const user = await User.findOne({ email });
   if (!user) {
     return res.status(401).json({ message: "Invalid email or password" });
@@ -17,8 +16,10 @@ const authenticate = async (req, res) => {
   if (!isMatch) {
     return res.status(401).json({ message: "Invalid email or password" });
   }
-  //generate a token
-  const token = jwt.sign({ _id: user._id }, SECRET, { expiresIn: "1h" }); //we can pass the username with the ID in the payload not only the _id
+  // generate a token
+  const token = jwt.sign({ _id: user._id, email: user.email }, SECRET, {
+    expiresIn: "1h",
+  });
   res.json({ token });
 };
 
