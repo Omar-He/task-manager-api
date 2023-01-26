@@ -1,17 +1,25 @@
 const mongoose = require("mongoose");
 
-const TaskSchema = new mongoose.Schema({
-  name: {
-    type: String,
-    required: [true, "must provide name"],
-    trim: true, //prevent spaces before and after the name
-    maxlength: [20, "name can not be more than 20 characters"],
+const TaskSchema = new mongoose.Schema(
+  {
+    name: {
+      type: String,
+      required: [true, "Please provide name"],
+      trim: true, //prevent spaces before and after the name
+      maxlength: [20, "name can not be more than 20 characters"],
+    },
+    completed: {
+      type: Boolean,
+      default: false,
+    },
+    createdBy: {
+      type: mongoose.Types.ObjectId,
+      ref: "User",
+      required: [true, "Please provide user"],
+    },
   },
-  completed: {
-    type: Boolean,
-    default: false,
-  },
-});
+  { timestamps: true }
+);
 
 //Schema without validation
 // {
